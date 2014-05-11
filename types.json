@@ -1,86 +1,72 @@
 {
     "answer": {
-        "filter":      "",
         "title":       "{{ owner.display_name }} on {{ title }}",
         "link":        "{{ link }}",
         "description": "{{ body }}",
         "pubDate":     "{{ timestamp(last_activity_date) }}"
     },
     "badge": {
-        "filter":      "",
         "title":       "{{ name }}",
         "link":        "{{ link }}",
         "description": "{{ description }}"
     },
     "comment": {
-        "filter":      "",
         "title":       "{{ owner.display_name }} on {{ post_type|title }}",
         "link":        "{{ link }}",
         "description": "{{ body }}",
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "network_activity": {
-        "filter":      "",
         "title":       "{{ title }}",
         "link":        "{{ link }}",
         "description": "{{ description }}",
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "network_user": {
-        "filter":      "",
         "title":       "{{ site_name }}",
         "link":        "{{ site_url }}",
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "post": {
-        "filter":      "",
         "title":       "{{ post_type|title }}: {{ title }}",
         "link":        "{{ link }}",
         "description": "{{ body }}",
         "pubDate":     "{{ timestamp(last_activity_date) }}"
     },
     "privilege": {
-        "filter":      "",
         "title":       "{{ short_description|title }}",
-        "description": "{{ description }}",
+        "description": "{{ description }}"
     },
     "question": {
-        "filter":      "",
         "title":       "{{ title }}",
         "link":        "{{ link }}",
         "description": "{{ body }}",
         "pubDate":     "{{ timestamp(last_activity_date) }}"
     },
     "question_timeline": {
-        "filter":      "",
         "title":       "{{ translate(timeline_type) }}",
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "reputation": {
-        "filter":      "",
         "title":       "{{ translate(vote_type) }}",
         "link":        "{{ link }}",
         "pubDate":     "{{ timestamp(on_date) }}"
     },
     "reputation_history": {
-        "filter":      "",
         "title":       "{{ translate(reputation_history_type) }}: {{ reputation_change }}",
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "revision": {
-        "filter":      "",
         "title":       "{{ comment }}",
         "description": "{{ body }}",
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "search_excerpt": {
-        "filter":      "",
         "title":       "{{ title }}",
         "description": "{{ body }}",
         "pubDate":     "{{ timestamp(last_activity_date) }}"
     },
     "site": {
-        "filter":      "",
         "title":       "{{ name }}",
         "link":        "{{ site_url }}",
         "description": "{{ audience|capitalize }}",
@@ -93,34 +79,28 @@
         "pubDate":     "{{ timestamp(creation_date) }}"
     },
     "tag": {
-        "filter":      "",
         "title":       "{{ name }}",
         "pubDate":     "{{ timestamp(last_activity_date) }}"
     },
     "tag_synonym": {
-        "filter":      "",
         "title":       "{{ from_tag }} to {{ to_date }}",
         "pubDate":     "{{ timestamp(last_applied_date) }}"
     },
     "tag_wiki": {
-        "filter":      "",
         "title":       "{{ tag_name }}",
         "description": "{{ excerpt }}",
         "pubDate":     "{{ timestamp(excerpt_last_edit_date) }}"
     },
     "top_tag": {
-        "filter":      "",
-        "title":       "{{ tag_name }}",
+        "title":       "{{ tag_name }}"
     },
     "user": {
-        "filter":      "",
         "title":       "{{ display_name }}",
         "link":        "{{ link }}",
         "description": "{{ about_me }}",
         "pubDate":     "{{ last_modified_date }}"
     },
     "user_timeline": {
-        "filter":      "",
         "title":       "{{ timeline_type|capitalize }}",
         "link":        "{{ link }}",
         "description": "{{ title }}",
