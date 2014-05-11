@@ -1,0 +1,10 @@
+div.footer { background-color: #e6e6e6; margin-top: 40px; padding: 40px 0; }
+div.jumbotron { margin-top: -20px; }
+div.jumbotron h1 { font-size: 24pt; margin-top: 0; }
+div.jumbotron p { font-size: 13pt; }
+p { font-size: 11pt; text-align: justify; }
+span.glyphicon { margin: 0 4px; }
+
+@media (min-width: 768px) {
+    div.container { max-width: 730px !important; }
+}

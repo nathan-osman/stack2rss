@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Stack2RSS</title>
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/global.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('home') }}">Stack2RSS</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#Usage">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                Usage
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Examples">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Examples
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#About">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="{{ url_for('static', filename='img/rss.png') }}">
+                    </div>
+                    <div class="col-sm-10">
+                        <h1>An RSS feed for nearly everything</h1>
+                        <p>
+                            Stack2RSS provides RSS feeds for answers, questions, comments,
+                            suggested edits, badges, reputation changes, question timeline
+                            events, and more! Stay on top of what's happening like never before.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Follow Questions</h4>
+                    <p>
+                        Interested in a certain tag or a certain topic? Then create an
+                        RSS feed for it and find out when new questions are asked!
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <h4>Follow Users</h4>
+                    <p>
+                        Know a really smart user on one of the Stack Exchange sites?
+                        Create a feed to follow their activities and find out when they
+                        post new content.
+                    </p>
+                </div>
+            </div>
+            <h2 id="Usage">Usage</h2>
+            <p>
+                Using Stack2RSS requires a very basic introduction to the
+                <a href="http://api.stackexchange.com/">Stack Exchange API</a>.
+                Stack Exchange provides access to site items through API methods.
+                For example, to retrieve all recent questions, one would use the URL:
+            </p>
+            <pre><a href="http://api.stackexchange.com/2.2/questions?site=stackoverflow">http://api.stackexchange.com/2.2/questions?site=stackoverflow</a></pre>
+            <p>
+                This returns a (nearly) unreadable dump of text in
+                <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> format. Stack2RSS
+                takes this information and creates a nicely formatted RSS feed. This feed
+                can then be added to your favorite RSS reader.
+            </p>
+            <p>
+                How do you create a feed? It's easy: take the relative path of
+                an API method (including query string parameters but <em>not</em>
+                including API version) and append it to the Stack2RSS URL like so:
+            </p>
+            <pre>{{ request.url_root }}<strong>{method}</strong></pre>
+            <div class="alert alert-info">
+                <strong>Note:</strong> it is not necessary to specify an API key.
+                One will be added to the request automatically. Methods that require
+                authentication are not supported by Stack2RSS.
+            </div>
+            <p>
+                If all of this technical jargon is confusing to you, keep reading.
+            </p>
+            <h2 id="Examples">Examples</h2>
+            <p>
+                The first example is relatively simple - it fetches all new questions
+                asked on Super User:
+            </p>
+            <pre>{{ request.url_root }}questions?site=superuser</pre>
+            <p>
+                The next example fetches all answers by user
+                <a href="http://stackoverflow.com/users/22656/jon-skeet">Jon Skeet</a>
+                on Stack Overflow:
+            </p>
+            <pre>{{ request.url_root }}users/22656/answers?site=stackoverflow</pre>
+            <p>
+                The final example fetches all questions on Server Fault with the
+                tag "apache":
+            </p>
+            <pre>{{ request.url_root }}questions?site=serverfault&tagged=apache</pre>
+            <h2 id="About">About</h2>
+            <p>
+                Stack2RSS is a small Python application built with
+                <a href="http://flask.pocoo.org/">Flask</a>. Requests to the
+                Stack Exchange API are made using
+                <a href="http://docs.python-requests.org/en/latest/">the Requests library</a>.
+                This webpage was built with <a href="http://getbootstrap.com">Bootstrap</a>
+                and uses the <a href="http://bootswatch.com/cosmo/">Cosmo theme</a>.
+            </p>
+            <p>
+                You can find the source code for the entire project
+                <a href="https://github.com/nathan-osman/stack2rss">here on GitHub</a>. The code
+                is released under the MIT license.
+            </p>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <p class="text-muted">
+                    Copyright &copy; 2014 - Nathan Osman
+                </p>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    </body>
+</html>
