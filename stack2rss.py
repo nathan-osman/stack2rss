@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 
 from datetime import datetime
+from email import utils
 from flask import Flask, render_template, render_template_string, request, url_for
 from json import load
-import PyRSS2Gen
 import requests
 
+from feed import RSSFeed
+
 def timestamp(ts):
-    pass
+    """Formats timestamps as RFC822 dates."""
+    return utils.formatdate(ts)
 
 def translate(text):
-    pass
+    """Converts this_type_of_text to This Type of Text."""
+    return ' '.join([p.capitalize() for p in text.split('_')])
 
 app = Flask(__name__)
 app.jinja_env.globals.update(timestamp=timestamp, translate=translate)
@@ -23,31 +27,35 @@ def process_item(item, type_):
     """Expand the templates for the specified item."""
     params = {}
     for k, v in type_.items():
-        params[k] = render_template_string(v, **item)
-    return PyRSS2Gen.RSSItem(**params)
+        value = render_template_string(v, **item)
+        if value:
+            params[k] = value
+    return params
 
 @app.route('/')
 def home():
     """Render the home page."""
-    return render_template('index.html')
+    return render_template('index.html', version='2.2')
 
-@app.route('/<path:method>')
-def method(method):
+@app.route('/<version>/<path:method>')
+def method(version, method):
     """Display the specified API method as an RSS feed."""
     params = dict(request.args)
     params.update({
-        'filter': '!)*M9.fSWn.729PmhIC)EmDAcZu2fDM.QX6OES2lJ9SKGJ.6y.efUtoqwdSIDfwDgj.DHrkL.1(4eDh4-_i07kVX)0VlzJ(T5kQpKZ5d_ZAAfWnyeErxmuCe46PAnssLSJya4.)bZMfhwY3P(wCBvL',
+        'filter': '-cMqQU)2Ngv7r(VTGLvhKZnEIDGH09-IxaIfPU3vLaIXPO*dlV0SQg3._npJh3Qj1ah(aRM8jjRvI_xG9OPgURzV(xF.qBi6I1C-r4h088reO*6s-cXlFwv0lvo2(n4o-CVp4K5XZtXS_jePvw2r4H',
     })
-    data = requests.get('http://api.stackexchange.com/2.2/%s' % method, params=params).json()
+    data = requests.get('http://api.stackexchange.com/%s/%s' % (
+        version,
+        method,
+    ), params=params).json()
     type_ = types[data['type']]
-    feed = PyRSS2Gen.RSS2(
-        title='Stack2RSS Custom Feed',
-        link=request.url_root,
-        description='A custom RSS feed for the "/%s" Stack Exchange API method.' % method,
-        lastBuildDate=datetime.now(),
-        items=[process_item(i, type_) for i in data['items']]
+    feed = RSSFeed(
+        'Stack2RSS Custom Feed',
+        'A custom RSS feed for the "/%s" Stack Exchange API method.' % method
     )
-    return str(feed.to_xml())
+    for i in data['items']:
+        feed.append_item(**process_item(i, type_))
+    return feed.get_xml()
 
 if __name__ == '__main__':
     app.debug = True

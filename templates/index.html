@@ -79,7 +79,7 @@
                 Stack Exchange provides access to site items through API methods.
                 For example, to retrieve all recent questions, one would use the URL:
             </p>
-            <pre><a href="http://api.stackexchange.com/2.2/questions?site=stackoverflow">http://api.stackexchange.com/2.2/questions?site=stackoverflow</a></pre>
+            <pre><a href="http://api.stackexchange.com/{{ version }}/questions?site=stackoverflow">http://api.stackexchange.com/{{ version }}/questions?site=stackoverflow</a></pre>
             <p>
                 This returns a (nearly) unreadable dump of text in
                 <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> format. Stack2RSS
@@ -88,10 +88,10 @@
             </p>
             <p>
                 How do you create a feed? It's easy: take the relative path of
-                an API method (including query string parameters but <em>not</em>
-                including API version) and append it to the Stack2RSS URL like so:
+                an API method (including query string parameters and API
+                version) and append it to the Stack2RSS URL like so:
             </p>
-            <pre>{{ request.url_root }}<strong>{method}</strong></pre>
+            <pre>{{ request.url_root }}<strong>{method}?{parameters}</strong></pre>
             <div class="alert alert-info">
                 <strong>Note:</strong> it is not necessary to specify an API key.
                 One will be added to the request automatically. Methods that require
@@ -105,18 +105,18 @@
                 The first example is relatively simple - it fetches all new questions
                 asked on Super User:
             </p>
-            <pre>{{ request.url_root }}questions?site=superuser</pre>
+            <pre>{{ request.url_root }}{{ version }}/questions?site=superuser</pre>
             <p>
                 The next example fetches all answers by user
                 <a href="http://stackoverflow.com/users/22656/jon-skeet">Jon Skeet</a>
                 on Stack Overflow:
             </p>
-            <pre>{{ request.url_root }}users/22656/answers?site=stackoverflow</pre>
+            <pre>{{ request.url_root }}{{ version }}/users/22656/answers?site=stackoverflow</pre>
             <p>
                 The final example fetches all questions on Server Fault with the
                 tag "apache":
             </p>
-            <pre>{{ request.url_root }}questions?site=serverfault&tagged=apache</pre>
+            <pre>{{ request.url_root }}{{ version }}/questions?site=serverfault&tagged=apache</pre>
             <h2 id="About">About</h2>
             <p>
                 Stack2RSS is a small Python application built with
