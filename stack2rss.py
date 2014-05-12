@@ -19,6 +19,10 @@ def translate(text):
 app = Flask(__name__)
 app.jinja_env.globals.update(timestamp=timestamp, translate=translate)
 
+# Load the config file
+with open('config.json', 'r') as f:
+    config = load(f)
+
 # Load the list of types and the fields to use
 with open('types.json', 'r') as f:
     types = load(f)
@@ -43,6 +47,7 @@ def method(version, method):
     params = dict(request.args)
     params.update({
         'filter': '-cMqQU)2Ngv7r(VTGLvhKZnEIDGH09-IxaIfPU3vLaIXPO*dlV0SQg3._npJh3Qj1ah(aRM8jjRvI_xG9OPgURzV(xF.qBi6I1C-r4h088reO*6s-cXlFwv0lvo2(n4o-CVp4K5XZtXS_jePvw2r4H',
+        'key': config['key'],
     })
     data = requests.get('http://api.stackexchange.com/%s/%s' % (
         version,
