@@ -11,4 +11,18 @@ http://stack2rss.quickmediasolutions.com
 
 ### Installation
 
-[TODO]
+Create `virtualenv` and install requirements:
+
+    ./scripts/setup.sh
+
+Run the Flask application:
+
+    ./run.sh stack2rss.py
+
+Visit the application in your browser:
+
+    # Linux
+    xdg-open http://localhost:5000
+
+    # OSX
+    open http://localhost:5000
