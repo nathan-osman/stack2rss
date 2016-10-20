@@ -11,6 +11,12 @@ http://stack2rss.quickmediasolutions.com
 
 ### Installation
 
+#### Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nathan-osman/stack2rss/)
+
+#### Locally
+
 Create `virtualenv` and install requirements:
 
     ./scripts/setup.sh

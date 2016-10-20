@@ -1,0 +1,6 @@
+{
+  "name": "Stack2RSS",
+  "description": "Stack2RSS is a simple Flask website that converts a Stack Exchange API resource or path to an RSS feed.",
+  "repository": "https://github.com/nathan-osman/stack2rss",
+  "keywords": ["flask", "python", "stackexchange"]
+}

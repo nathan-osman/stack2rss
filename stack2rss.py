@@ -5,6 +5,7 @@ from email import utils
 from flask import Flask, render_template, render_template_string, request, url_for
 from json import load
 import requests
+import os
 
 from feed import RSSFeed
 
@@ -64,4 +65,5 @@ def method(version, method):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
