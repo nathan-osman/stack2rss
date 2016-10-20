@@ -1,1 +1,1 @@
-web: run.sh stack2rss.py
+web: ./run.sh stack2rss.py
