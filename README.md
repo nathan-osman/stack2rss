@@ -13,7 +13,7 @@ http://stack2rss.quickmediasolutions.com
 
 #### Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/node-js-sample)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nathan-osman/stack2rss/)
 
 #### Locally
 
