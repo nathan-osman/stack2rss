@@ -6,7 +6,7 @@ from xml.dom.minidom import Document
 class RSSFeed(object):
     """Represents an RSS feed."""
 
-    def __init__(self, title, description):
+    def __init__(self, title, description, url):
         """Initialize the feed."""
         self._document = Document()
         rss_element = self._document.createElement('rss')
@@ -15,6 +15,7 @@ class RSSFeed(object):
         self._channel = self._document.createElement('channel')
         rss_element.appendChild(self._channel)
         self._channel.appendChild(self._create_text_element('title', title))
+        self._channel.appendChild(self._create_text_element('link', url))
         self._channel.appendChild(self._create_text_element('description', description))
         self._channel.appendChild(self._create_text_element('lastBuildDate', utils.formatdate(time())))
 
