@@ -2,6 +2,7 @@ from email import utils
 from time import time
 from xml.dom.minidom import Document
 
+
 class RSSFeed(object):
     """Represents an RSS feed."""
 
@@ -27,11 +28,11 @@ class RSSFeed(object):
         """Append an item to the feed."""
         item = self._document.createElement('item')
         item.appendChild(self._create_text_element('title', title))
-        if not link is None:
+        if link is not None:
             item.appendChild(self._create_text_element('link', link))
-        if not description is None:
+        if description is not None:
             item.appendChild(self._create_text_element('description', description))
-        if not pubDate is None:
+        if pubDate is not None:
             item.appendChild(self._create_text_element('pubDate', pubDate))
         self._channel.appendChild(item)
 

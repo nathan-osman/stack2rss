@@ -1,21 +1,23 @@
 #!/usr/bin/env python
 
-from datetime import datetime
 from email import utils
-from flask import Flask, render_template, render_template_string, request, url_for
+from flask import Flask, render_template, render_template_string, request
 from json import load
 import requests
 import os
 
 from feed import RSSFeed
 
+
 def timestamp(ts):
     """Formats timestamps as RFC822 dates."""
     return utils.formatdate(ts)
 
+
 def translate(text):
     """Converts this_type_of_text to This Type of Text."""
     return ' '.join([p.capitalize() for p in text.split('_')])
+
 
 app = Flask(__name__)
 app.jinja_env.globals.update(timestamp=timestamp, translate=translate)
@@ -28,6 +30,7 @@ with open('config.json', 'r') as f:
 with open('types.json', 'r') as f:
     types = load(f)
 
+
 def process_item(item, type_):
     """Expand the templates for the specified item."""
     params = {}
@@ -37,10 +40,12 @@ def process_item(item, type_):
             params[k] = value
     return params
 
+
 @app.route('/')
 def home():
     """Render the home page."""
     return render_template('index.html', version='2.2')
+
 
 @app.route('/<version>/<path:method>')
 def method(version, method):
@@ -62,6 +67,7 @@ def method(version, method):
     for i in data['items']:
         feed.append_item(**process_item(i, type_))
     return feed.get_xml()
+
 
 if __name__ == '__main__':
     app.debug = True
