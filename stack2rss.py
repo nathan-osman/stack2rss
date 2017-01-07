@@ -63,7 +63,7 @@ def method(version, method):
     feed = RSSFeed(
         'Stack2RSS Custom Feed',
         'A custom RSS feed for the "/%s" Stack Exchange API method.' % method,
-        'http://{}{}'.format(config['domain'], request.path),
+        'http://{}{}'.format(config['domain'], request.full_path),
     )
     for i in data['items']:
         feed.append_item(**process_item(i, type_))
