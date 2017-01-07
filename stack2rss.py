@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from email import utils
-from flask import Flask, render_template, render_template_string, request
+from flask import Flask, render_template, render_template_string, request, Response
 from json import load
 import requests
 import os
@@ -66,7 +66,7 @@ def method(version, method):
     )
     for i in data['items']:
         feed.append_item(**process_item(i, type_))
-    return feed.get_xml()
+    return Response(feed.get_xml(), mimetype='application/rss+xml')
 
 
 if __name__ == '__main__':
