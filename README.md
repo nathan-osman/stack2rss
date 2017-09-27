@@ -1,3 +1,5 @@
+> **Note:** this project is no longer actively maintained.
+
 ## Stack2RSS
 
 Stack2RSS is a simple [Flask](http://flask.pocoo.org/) website that converts a
