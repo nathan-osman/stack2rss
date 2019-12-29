@@ -5,7 +5,7 @@ MAINTAINER Nathan Osman <nathan@quickmediasolutions.com>
 RUN apk add --no-cache \
         python3 \
         uwsgi \
-        uwsgi-python3 \
+        uwsgi-python \
         uwsgi-corerouter \
         uwsgi-router_http \
         uwsgi-http
@@ -26,7 +26,7 @@ ADD types.json /var/lib/stack2rss/
 # Specify the command for running the server
 CMD [ \
     "uwsgi", \
-    "--plugin", "python3,http", \
+    "--plugin", "python,http", \
     "--http", "0.0.0.0:80", \
     "--chdir", "/var/lib/stack2rss/", \
     "--module", "stack2rss:app", \
