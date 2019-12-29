@@ -3,4 +3,4 @@ Jinja2==2.8
 MarkupSafe==0.23
 Werkzeug==0.11.3
 itsdangerous==0.24
-requests==2.9.1
+requests==2.20.0
